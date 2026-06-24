@@ -1,72 +1,56 @@
-import React from "react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
+import { FiMail } from "react-icons/fi";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 
 const SocialLinks = () => {
   const links = [
     {
       id: 1,
-      child: (
-        <>
-          LinkedIn <FaLinkedinIn size={25} />
-        </>
-      ),
+      child: <FaLinkedinIn size={18} />,
       href: "https://www.linkedin.com/in/raisul-islam-416b88119/",
-      style: "rounded-tr-md",
+      name: "LinkedIn",
     },
     {
       id: 2,
-      child: (
-        <>
-          GitHub <FaGithub size={25} />
-        </>
-      ),
+      child: <FaGithub size={18} />,
       href: "https://github.com/Raisul999",
+      name: "GitHub",
     },
     {
       id: 3,
-      child: (
-        <>
-          Mail <HiOutlineMail size={25} />
-        </>
-      ),
+      child: <FiMail size={18} />,
       href: "mailto:rislam.arnob@gmail.com",
+      name: "Mail",
     },
     {
       id: 4,
-      child: (
-        <>
-          Resume <BsFillPersonLinesFill size={25} />
-        </>
-      ),
-      href: "https://drive.google.com/file/d/1f2J03qi652Xgks5Q9RouY6HFb6opcD_I/view?usp=sharing",
-      style: "rounded-br-md",
+      child: <BsFillPersonLinesFill size={18} />,
+      href: "https://drive.google.com/file/d/1sNTL3T2Xy8kbVwAXDB1tGvoylVoMyhL7/view?usp=sharing",
+      name: "Resume",
     },
   ];
+
   return (
-    <div className="hidden lg:flex flex-col top-[35%] fixed z-50">
-      <ul>
-        {links.map(({ id, child, href, style, download }: any) => (
-          <li
+    <div className="hidden 2xl:flex flex-col top-[35%] left-8 fixed z-50">
+      <div className="flex flex-col items-center gap-4 bg-white/5 border border-white/10 backdrop-blur-md px-3 py-6 rounded-full shadow-2xl">
+        {links.map(({ id, child, href, name }: any) => (
+          <a
             key={id}
-            className={
-              "flex justify-between items-center w-40 h-14 px-4 bg-gray-500 ml-[-100px] hover:ml-[-10px] hover:rounded-md duration-200 " +
-              (style || "")
-            }
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-center w-10 h-10 rounded-full text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/10 border border-transparent hover:border-cyan-500/20 transition-all duration-300 relative group cursor-pointer"
           >
-            <a
-              href={href}
-              className="flex justify-between items-center w-full text-white"
-              download={download}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <>{child}</>
-            </a>
-          </li>
+            {child}
+            {/* Tooltip on hover */}
+            <span className="absolute left-14 opacity-0 group-hover:opacity-100 bg-[#0c0a24]/90 backdrop-blur-md border border-white/10 text-white text-xs font-semibold px-2.5 py-1 rounded-lg transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-xl">
+              {name}
+            </span>
+          </a>
         ))}
-      </ul>
+      </div>
+      {/* Decorative vertical line */}
+      <div className="w-[1px] h-24 bg-gradient-to-b from-white/15 to-transparent mx-auto mt-4"></div>
     </div>
   );
 };
